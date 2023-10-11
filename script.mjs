@@ -5,12 +5,21 @@ let reverseCountryList = () => {
   return reversedCountries;
 };
 
+let sortCountryList = () => {
+  const reversedCountries = countryList.sort();
+  return reversedCountries;
+};
+
 let findCountryByName = (countryName) => {
-  const filterCountries = countryList.find((country) => country === countryName);
+  const filterCountries = countryList.find(
+    (country) => country === countryName
+  );
   return filterCountries;
 };
 let filterCountriesByName = (countrySubName) => {
-  const filterCountries = countryList.filter((country) => country.match(countrySubName));
+  const filterCountries = countryList.filter((country) =>
+    country.match(countrySubName)
+  );
   return filterCountries;
 };
 
@@ -47,8 +56,8 @@ let combineTwoArrasOfCountries = (firstCountryArray, secondCountryArray) => {
 };
 
 console.log(findCountryIndex("Palestine"));
-console.log(countryList);
-reverseCountryList();
+console.log(reverseCountryList());
+console.log(sortCountryList());
 console.log(findCountryByName("Brazil"));
 deleteCountryByName("France");
 console.log(filterCountriesByName("al"));
