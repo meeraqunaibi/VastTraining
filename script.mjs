@@ -1,53 +1,53 @@
-import { country_list } from "./data/countries.mjs";
+import { countryList } from "./data/countries.mjs";
 
 let reverseCountryList = () => {
-  const reversedCountries = country_list.reverse();
+  const reversedCountries = countryList.reverse();
   return reversedCountries;
 };
 
-let findCountryByName = (s) => {
-  const filterCountries = country_list.find((country) => country === s);
+let findCountryByName = (countryName) => {
+  const filterCountries = countryList.find((country) => country === countryName);
   return filterCountries;
 };
-let filterCountriesByName = (s) => {
-  const filterCountries = country_list.filter((country) => country.match(s));
+let filterCountriesByName = (countrySubName) => {
+  const filterCountries = countryList.filter((country) => country.match(countrySubName));
   return filterCountries;
 };
 
-let findCountryIndex = (s) => {
-  const countryIndex = country_list.indexOf(s);
+let findCountryIndex = (countryName) => {
+  const countryIndex = countryList.indexOf(countryName);
   return countryIndex;
 };
 
-let deleteCountryByName = (name) => {
-  const index = findCountryIndex(name);
-  country_list.splice(index, 1);
+let deleteCountryByName = (countryName) => {
+  const index = findCountryIndex(countryName);
+  countryList.splice(index, 1);
 };
 
 let getCountriesCount = () => {
-  return country_list.length;
+  return countryList.length;
 };
 
-let isCountryExist = (s) => {
-  const flag = country_list.includes(s);
+let isCountryExist = (countryName) => {
+  const flag = countryList.includes(countryName);
   return flag;
 };
 
 let removeFirstCountry = () => {
-  return country_list.shift();
+  return countryList.shift();
 };
 let removeLastCountry = () => {
-  return country_list.pop();
+  return countryList.pop();
 };
-let getSubArrayFromCountryListArray = (start, end) => {
-  return country_list.slice(start, end);
+let getSubArrayFromCountryListArray = (startIndex, endIndex) => {
+  return countryList.slice(startIndex, endIndex);
 };
-let combineTwoArrasOfCountries = (firstArray, secondArray) => {
-  return firstArray.concat(secondArray);
+let combineTwoArrasOfCountries = (firstCountryArray, secondCountryArray) => {
+  return firstCountryArray.concat(secondCountryArray);
 };
 
 console.log(findCountryIndex("Palestine"));
-console.log(country_list);
+console.log(countryList);
 reverseCountryList();
 console.log(findCountryByName("Brazil"));
 deleteCountryByName("France");
