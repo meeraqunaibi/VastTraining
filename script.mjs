@@ -10,24 +10,24 @@ let sortCountryList = () => {
   return reversedCountries;
 };
 
+let findCountryIndex = (countryName) => {
+  let countryIndex = countryList.findIndex((country) => {
+    return country.name == countryName;
+  });
+  return countryIndex;
+};
 let findCountryByName = (countryName) => {
   const filterCountries = countryList.find(
-    (country) => country === countryName
+    (country) => country.name === countryName
   );
   return filterCountries;
 };
 let filterCountriesByName = (countrySubName) => {
   const filterCountries = countryList.filter((country) =>
-    country.match(countrySubName)
+    country.name.match(countrySubName)
   );
   return filterCountries;
 };
-
-let findCountryIndex = (countryName) => {
-  const countryIndex = countryList.indexOf(countryName);
-  return countryIndex;
-};
-
 let deleteCountryByName = (countryName) => {
   const index = findCountryIndex(countryName);
   countryList.splice(index, 1);
@@ -38,32 +38,34 @@ let getCountriesCount = () => {
 };
 
 let isCountryExist = (countryName) => {
-  const flag = countryList.includes(countryName);
-  return flag;
+  let flag = findCountryByName(countryName);
+  return !flag ? false : true;
 };
 
 let removeFirstCountry = () => {
   return countryList.shift();
 };
+
 let removeLastCountry = () => {
   return countryList.pop();
 };
+
 let getSubArrayFromCountryListArray = (startIndex, endIndex) => {
   return countryList.slice(startIndex, endIndex);
 };
+
 let combineTwoArrasOfCountries = (firstCountryArray, secondCountryArray) => {
   return firstCountryArray.concat(secondCountryArray);
 };
 
-console.log(findCountryIndex("Palestine"));
 console.log(reverseCountryList());
 console.log(sortCountryList());
+console.log(findCountryIndex("Yemen"));
 console.log(findCountryByName("Brazil"));
-deleteCountryByName("France");
 console.log(filterCountriesByName("al"));
 console.log(getCountriesCount());
-console.log(isCountryExist("Italy"));
-console.log(findCountryByName("Jordan"));
+deleteCountryByName("France");
+console.log(isCountryExist("Palestine"));
 console.log(removeLastCountry());
 console.log(removeFirstCountry());
 console.log(getCountriesCount());
