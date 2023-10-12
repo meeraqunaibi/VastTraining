@@ -92,7 +92,7 @@ let listCountries = () => {
 let searchByCity = (city) => {
   for (let i = 0; i < countryList.length; i++) {
     for (const element of countryList[i]["cities"]) {
-      if (element === city) return countryList[i];
+      if (element.name === city) return countryList[i];
     }
   }
 };
@@ -100,7 +100,7 @@ let searchByCity = (city) => {
 let deleteCityInCountry = (city) => {
   let country = searchByCity(city);
   let cityIndex = country.cities.findIndex((element) => {
-    return element == city;
+    return element.name == city;
   });
   country.cities.splice(cityIndex, 1);
   return country;
@@ -112,4 +112,3 @@ let listCities = (countryName) => {
     console.log(countryObject["cities"][i]);
   }
 };
-
