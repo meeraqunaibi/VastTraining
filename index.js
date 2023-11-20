@@ -1,11 +1,10 @@
 import { TreeNode } from "./TreeNode.js"; // Importing TreeNode module
 
 const map = new Map(); // Creating a map to store characters and their probabilities
-map.set("b", 0.1);
+map.set("b", 0.2);
 map.set("a", 0.3);
-map.set("c", 0.11);
-map.set("d", 0.09);
-map.set("e", 0.4);
+map.set("c", 0.3);
+map.set("d", 0.2);
 
 let nodeArray = new Array(); // Array to hold nodes for Huffman encoding
 let internalNodesCounter = 0; // Counter for internal nodes in the Huffman tree
@@ -39,13 +38,13 @@ let minNode = () => {
 }
 
 // Function to print the Huffman codes for characters
-let printCode = (node, binaryCode) => {
+let generateHuffmanCode = (node, binaryCode) => {
     if (node.left == null && node.right == null) {
         console.log(node.data + ": " + binaryCode);
         return;
     }
-    printCode(node.left, binaryCode + "0");
-    printCode(node.right, binaryCode + "1");
+    generateHuffmanCode(node.left, binaryCode + "0");
+    generateHuffmanCode(node.right, binaryCode + "1");
 }
 
 // Function to perform Huffman encoding
@@ -55,35 +54,17 @@ let huffmanEncoding = () => {
         let newNode = new TreeNode(key, value)
         nodeArray.push(newNode);
     }
-
     // Building the Huffman tree
     while (nodeArray.length > 1) {
         let min1 = minNode();
         let min2 = minNode();
         internalNodesCounter++;
         let newNode = new TreeNode(`internalNode${internalNodesCounter}`, min1.frequency + min2.frequency);
-
-        // Constructing the tree based on minimum frequencies
-        if (!min1.left && !min2.left) {
-            newNode.left = new TreeNode(min1.data, min1.frequency)
-            newNode.right = new TreeNode(min2.data, min2.frequency)
-        }
-        else if (!min1.left) {
-            newNode.left = new TreeNode(min1.data, min1.frequency)
-            newNode.right = min2;
-        }
-        else if (!min2.left) {
-            newNode.left = min1;
-            newNode.right = new TreeNode(min2.data, min2.frequency)
-        }
-        else {
-            newNode.left = min1;
-            newNode.right = min2;
-        }
+        newNode.left = min1;
+        newNode.right = min2;
         nodeArray.push(newNode);
     }
-
-    printCode(nodeArray[nodeArray.length - 1], "") // Printing Huffman codes
+    generateHuffmanCode(nodeArray[nodeArray.length - 1], "") // Printing Huffman codes
 }
 
 checkProbabilitySum(); // Start the process by checking probabilities
